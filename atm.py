@@ -15,7 +15,7 @@ while(True):
         if trial == 3:
             print("Pin anda salah, silahkan coba lagi nanti")
             exit()
-            
+
     print("Selamat datang di ATM")
     print("Silahkan pilih")
     print("1.Cek Saldo")
@@ -34,16 +34,23 @@ while(True):
 
     elif selectMenu == 3:
         nominal = int(input("Masukan nominal uang yang akan ditarik :"))
-        atm.tarikUang(nominal)
-        print("Saldo anda sekarang :", atm.cekSaldo())
+        if nominal < atm.cekSaldo():
+            atm.tarikUang(nominal)
+            print("Saldo anda sekarang :", atm.cekSaldo())
+        else :
+            print("Transaksi")
+            print("Saldo anda kurang.")
     
     elif selectMenu == 4:
-        nomor = int(input("Masukan nomor telefon tujuan :"))
+        nomor = str(input("Masukan nomor telefon tujuan :"))
         nominal = int(input("Masukan jumlah pulsa yang akan dimasukkan :"))
-        atm.tarikUang(nominal)
-        print("Pengisian pulsa ke nomor :", nomor, "sukses")
-        print("Saldo anda sekarang :", atm.cekSaldo())
-
+        if nominal < atm.cekSaldo():
+            atm.tarikUang(nominal)
+            print("Pengisian pulsa ke nomor", nomor, "sukses")
+            print("Saldo anda sekarang :", atm.cekSaldo())
+        else :
+            print("Transaksi")
+            print("Saldo anda kurang.")
     elif selectMenu == 5:
         print("Terima Kasih telah menggunakan ATM")
         exit()
@@ -55,7 +62,7 @@ while(True):
     print("Apakah anda ingin melakukan transaksi lagi ?")
     print("1. Iya")
     print("2. tidak")
-    selectAkhir = int(input("Masukan pilihan anda"))
+    selectAkhir = int(input("Masukan pilihan anda :"))
     if selectAkhir == 2:
         print("Terima kasih")
         exit()
